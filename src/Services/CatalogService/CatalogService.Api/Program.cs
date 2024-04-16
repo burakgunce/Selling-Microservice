@@ -1,3 +1,6 @@
+using CatalogService.Api.Extensions;
+using CatalogService.Infrastructure.Context;
+
 namespace CatalogService.Api
 {
     public class Program
@@ -7,6 +10,8 @@ namespace CatalogService.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            //builder.Services.ConfigureDbContext(CatalogContext);
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
