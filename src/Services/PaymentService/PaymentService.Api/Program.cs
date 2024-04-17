@@ -1,75 +1,69 @@
-using EventBus.Base.Abstraction;
-using EventBus.Base;
-using EventBus.Factory;
-using RabbitMQ.Client;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
+using System;
 
 namespace PaymentService.Api
 {
     public class Program
     {
+        private static string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        private static IConfiguration configuration
+        {
+            get
+            {
+                return new ConfigurationBuilder()
+                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                    .AddJsonFile($"Configurations/appsettings.json", optional: false)
+                    .AddJsonFile($"Configurations/appsettings.{env}.json", optional: true)
+                    .AddEnvironmentVariables()
+                    .Build();
+            }
+        }
+
+        private static IConfiguration serilogConfiguration
+        {
+            get
+            {
+                return new ConfigurationBuilder()
+                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                    .AddJsonFile($"Configurations/serilog.json", optional: false)
+                    .AddJsonFile($"Configurations/serilog.{env}.json", optional: true)
+                    .AddEnvironmentVariables()
+                    .Build();
+            }
+        }
+
+        public static IWebHost BuildWebHost(IConfiguration configuration, string[] args)
+        {
+            return WebHost.CreateDefaultBuilder()
+                .UseDefaultServiceProvider((context, options) =>
+                {
+                    options.ValidateOnBuild = false;
+                    options.ValidateScopes = false;
+                })
+                .ConfigureAppConfiguration(i => i.AddConfiguration(configuration))
+                .UseStartup<Startup>()
+                .ConfigureLogging(i => i.ClearProviders())
+                .UseSerilog()
+                .Build();
+        }
+
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var host = BuildWebHost(configuration, args);
 
-            var env = builder.Environment;
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(serilogConfiguration)
+                .CreateLogger();
 
-            // Configuration
-            builder.Configuration
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("Configurations/appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"Configurations/appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
+            Log.Logger.Information("Application is Running....");
 
-            // Serilog Configuration
-            //Log.Logger = new LoggerConfiguration()
-                //.ReadFrom.Configuration(builder.Configuration)
-                //.CreateLogger();
-
-            // Services
-            builder.Services.AddControllers();
-            builder.Services.AddSwaggerGen();
-            //builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(dispose: true));
-
-            // Event Bus Configuration
-            builder.Services.AddSingleton<IEventBus>(sp =>
-            {
-                EventBusConfig config = new()
-                {
-                    ConnectionRetryCount = 5,
-                    EventNameSuffix = "IntegrationEvent",
-                    SubscriberClientAppName = "PaymentService",
-                    EventBusType = EventBusType.RabbitMQ,
-                    Connection = new ConnectionFactory()
-                    {
-                        HostName = "localhost",
-                        Port = 15672,
-                        UserName = "guest",
-                        Password = "guest"
-                    }
-                };
-
-                return EventBusFactory.Create(config, sp);
-            });
-
-            var app = builder.Build();
-
-            // Middleware
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PaymentService.Api v1"));
-            }
-
-            app.UseHttpsRedirection();
-            app.UseRouting();
-            app.UseAuthorization();
-
-            app.MapControllers();
-
-            //Log.Information("Application is Running....");
-
-            app.Run();
+            host.Run();
         }
     }
 }
