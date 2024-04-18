@@ -1,0 +1,9 @@
+NotificationService		-> Console App
+
+Web.ApiGateway			-> http://localhost:7127
+
+PaymentService.Api		-> http://localhost:7245
+OrderService.Api		-> http://localhost:7270
+BasketService.Api		-> http://localhost:7263
+CatalogService.Api		-> http://localhost:7055
+IdentityService.Api		-> http://localhost:7079
