@@ -1,5 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BasketService.Api.Core.Application.Repository;
+using BasketService.Api.Core.Application.Services;
+using BasketService.Api.Core.Domain.Models;
+using BasketService.Api.IntegrationEvents.Events;
+using EventBus.Base.Abstraction;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace BasketService.Api.Controllers
 {
@@ -11,10 +21,10 @@ namespace BasketService.Api.Controllers
         private readonly IBasketRepository repository;
         private readonly IIdentityService identityService;
         private readonly IEventBus _eventBus;
-        private readonly ILogger<BasketController> _logger;
+        private readonly ILogger<BasketsController> _logger;
 
         public BasketsController(
-            ILogger<BasketController> logger,
+            ILogger<BasketsController> logger,
             IBasketRepository repository,
             IIdentityService identityService,
             IEventBus eventBus)

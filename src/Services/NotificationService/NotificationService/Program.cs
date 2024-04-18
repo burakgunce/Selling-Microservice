@@ -20,13 +20,13 @@ namespace NotificationService
 
             ConfigureServices(services);
 
-            //Log.Logger = new LoggerConfiguration()
-            //    .ReadFrom.Configuration(serilogConfiguration)
-            //    .CreateLogger();
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(serilogConfiguration)
+                .CreateLogger();
 
-            //var sp = services.BuildServiceProvider();
+            var sp = services.BuildServiceProvider();
 
-            //IEventBus eventBus = sp.GetRequiredService<IEventBus>();
+            IEventBus eventBus = sp.GetRequiredService<IEventBus>();
 
             eventBus.Subscribe<OrderPaymentSuccessIntegrationEvent, OrderPaymentSuccessIntegrationEventHandler>();
             eventBus.Subscribe<OrderPaymentFailedIntegrationEvent, OrderPaymentFailedIntegrationEventHandler>();
@@ -58,17 +58,17 @@ namespace NotificationService
             });
         }
 
-        //private static IConfiguration serilogConfiguration
-        //{
-        //    get
-        //    {
-        //        return new ConfigurationBuilder()
-        //            .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-        //            .AddJsonFile($"Configurations/serilog.json", optional: false)
-        //            .AddJsonFile($"Configurations/serilog.{env}.json", optional: true)
-        //            .AddEnvironmentVariables()
-        //            .Build();
-        //    }
-        //}
+        private static IConfiguration serilogConfiguration
+        {
+            get
+            {
+                return new ConfigurationBuilder()
+                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                    .AddJsonFile($"Configurations/serilog.json", optional: false)
+                    .AddJsonFile($"Configurations/serilog.{env}.json", optional: true)
+                    .AddEnvironmentVariables()
+                    .Build();
+            }
+        }
     }
 }

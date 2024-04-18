@@ -1,5 +1,6 @@
 ﻿using BasketService.Api.Core.Application.Repository;
 using BasketService.Api.IntegrationEvents.Events;
+using EventBus.Base.Abstraction;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 

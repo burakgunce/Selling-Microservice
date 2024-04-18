@@ -1,4 +1,5 @@
 ﻿using BasketService.Api.Core.Domain.Models;
+using EventBus.Base.Events;
 using System;
 
 namespace BasketService.Api.IntegrationEvents.Events
