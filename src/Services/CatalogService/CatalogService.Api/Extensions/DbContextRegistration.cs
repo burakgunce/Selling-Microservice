@@ -1,4 +1,4 @@
-﻿using CatalogService.Infrastructure.Context;
+﻿using CatalogService.Api.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -14,7 +14,7 @@ namespace CatalogService.Api.Extensions
                     options.UseSqlServer(configuration["ConnectionString"],
                                          sqlServerOptionsAction: sqlOptions =>
                                          {
-                                             sqlOptions.MigrationsAssembly(typeof(Program).GetTypeInfo().Assembly.GetName().Name);
+                                             sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
                                              sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30),            errorNumbersToAdd: null);
                                          });
                 });

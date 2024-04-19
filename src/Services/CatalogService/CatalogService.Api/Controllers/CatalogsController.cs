@@ -1,12 +1,18 @@
-﻿using CatalogService.Application.ViewModels;
-using CatalogService.Domain.Entities;
-using CatalogService.Infrastructure.Context;
-using CatalogService.Infrastructure;
+﻿using CatalogService.Api.Core.Application.ViewModels;
+using CatalogService.Api.Core.Domain;
+using CatalogService.Api.Infrastructure;
+using CatalogService.Api.Infrastructure.Context;
+using CatalogService.Api.Infrastructure.Setup;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace CatalogService.Api.Controllers
 {
@@ -301,4 +307,3 @@ namespace CatalogService.Api.Controllers
         }
     }
 }
-

@@ -70,13 +70,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.UnitTest", "tests\BuildingBlocks\EventBus.UnitTest\EventBus.UnitTest.csproj", "{A6C36B3C-5917-47BC-8230-853E3B777E48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Application", "src\Services\CatalogService\CatalogService.Application\CatalogService.Application.csproj", "{AC0E7627-5E43-42F2-A342-891E5B813287}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Infrastructure", "src\Services\CatalogService\CatalogService.Infrastructure\CatalogService.Infrastructure.csproj", "{B82E12EA-16A8-47DA-865A-D68EE097DD9C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Domain", "src\Services\CatalogService\CatalogService.Domain\CatalogService.Domain.csproj", "{AE9BC8B7-873D-4374-9CE1-3B3312BDC5D0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketService.Api", "src\Services\BasketService\BasketService.Api\BasketService.Api.csproj", "{B7670EC6-8D22-41F4-9565-51BFDDD1BD81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketService.Api", "src\Services\BasketService\BasketService.Api\BasketService.Api.csproj", "{B7670EC6-8D22-41F4-9565-51BFDDD1BD81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -144,18 +138,6 @@ Global
 		{A6C36B3C-5917-47BC-8230-853E3B777E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6C36B3C-5917-47BC-8230-853E3B777E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6C36B3C-5917-47BC-8230-853E3B777E48}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC0E7627-5E43-42F2-A342-891E5B813287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC0E7627-5E43-42F2-A342-891E5B813287}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC0E7627-5E43-42F2-A342-891E5B813287}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC0E7627-5E43-42F2-A342-891E5B813287}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B82E12EA-16A8-47DA-865A-D68EE097DD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B82E12EA-16A8-47DA-865A-D68EE097DD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B82E12EA-16A8-47DA-865A-D68EE097DD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B82E12EA-16A8-47DA-865A-D68EE097DD9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE9BC8B7-873D-4374-9CE1-3B3312BDC5D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE9BC8B7-873D-4374-9CE1-3B3312BDC5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE9BC8B7-873D-4374-9CE1-3B3312BDC5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE9BC8B7-873D-4374-9CE1-3B3312BDC5D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7670EC6-8D22-41F4-9565-51BFDDD1BD81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7670EC6-8D22-41F4-9565-51BFDDD1BD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7670EC6-8D22-41F4-9565-51BFDDD1BD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -194,9 +176,6 @@ Global
 		{63570777-5CA2-42BF-B5B9-E502EEB68DB2} = {4A207B25-EC5B-4BA1-B148-90EB6B11AB25}
 		{CDB8A0F4-1C3D-4046-946C-358C11BD0BA3} = {C1B48EA8-B25B-4BC7-A7E3-1BC56D61F533}
 		{A6C36B3C-5917-47BC-8230-853E3B777E48} = {CDB8A0F4-1C3D-4046-946C-358C11BD0BA3}
-		{AC0E7627-5E43-42F2-A342-891E5B813287} = {128AA86F-8323-47DB-9FF1-24A647FFC51C}
-		{B82E12EA-16A8-47DA-865A-D68EE097DD9C} = {128AA86F-8323-47DB-9FF1-24A647FFC51C}
-		{AE9BC8B7-873D-4374-9CE1-3B3312BDC5D0} = {128AA86F-8323-47DB-9FF1-24A647FFC51C}
 		{B7670EC6-8D22-41F4-9565-51BFDDD1BD81} = {508B9305-7979-4E91-AC9E-2A89777C56C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
